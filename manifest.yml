@@ -1,0 +1,8 @@
+ applications:
+ - name: challenge-ibm-frontend
+     path: ./dist
+     buildpack: https://github.com/machadodev/challenge-ibm-frontend
+     random-route: true
+     memory: 256M
+     env:
+     FORCE_HTTPS: true
