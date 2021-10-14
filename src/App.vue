@@ -10,6 +10,12 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  methods: {
+    onClick() {
+      const x = 1;
+      alert('You clicked the button!')
+    }
   }
 }
 </script>
