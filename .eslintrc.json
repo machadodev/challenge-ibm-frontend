@@ -8,8 +8,6 @@
     "plugin:prettier/recommended",
     "eslint:recommended"
   ],
-  "parserOptions": {
-    "parser": "babel-eslint"
-  },
+  "parserOptions": {},
   "rules": {}
 }

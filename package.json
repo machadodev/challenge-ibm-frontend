@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@carbon/vue": "^2.40.0",
@@ -16,10 +17,12 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-vue": "^7.19.1"
+    "eslint-plugin-vue": "^7.19.1",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.2.3"
   },
   "browserslist": [
     "> 1%",
