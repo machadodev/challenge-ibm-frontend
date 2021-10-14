@@ -10,11 +10,6 @@ export default {
   name: 'App',
   components: {
     HelloWorld
-  },
-  methods: {
-    onClick() {
-      alert('You clicked the button!');
-    }
   }
 };
 </script>
