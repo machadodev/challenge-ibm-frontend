@@ -1,15 +1,20 @@
 <template>
   <div class="sample">
-    <h1>Example use of @carbon/vue</h1>
-    <cv-text-input label="Who are you?" v-model="yourName" placeholder="your name" />
+    <h1>{{ msg }}</h1>
+    <cv-text-input
+      label="Who are you?"
+      v-model="yourName"
+      placeholder="your name"
+    />
     <cv-button @click="onClick">Hello {{ yourName }}</cv-button>
     <cv-modal :visible="visible" @modal-hidden="modalClosed">
       <template v-slot:title>Welcome to @carbon/vue {{ yourName }}</template>
       <template v-slot:content>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
         </p>
       </template>
     </cv-modal>
@@ -18,12 +23,17 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   data() {
     return {
-      yourName: "",
-      visible: false,
+      yourName: '',
+      visible: false
     };
+  },
+  props: {
+    msg: {
+      type: String
+    }
   },
   methods: {
     onClick() {
@@ -31,8 +41,8 @@ export default {
     },
     modalClosed() {
       this.visible = false;
-    },
-  },
+    }
+  }
 };
 </script>
 
