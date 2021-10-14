@@ -1,5 +1,9 @@
 <template>
-  <HelloWorld msg="Hello world!" />
+  <div id="nav">
+    <router-link to="/login">Login</router-link> |
+    <router-link to="/home">Home</router-link>
+  </div>
+  <router-view></router-view>
 </template>
 
 <script>
