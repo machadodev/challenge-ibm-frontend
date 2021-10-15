@@ -1,10 +1,11 @@
-import { createApp } from 'vue';
-import 'carbon-components/css/carbon-components.css';
-import CarbonComponentsVue from '@carbon/vue/src/index';
+import Vue from 'vue';
 import App from './App.vue';
-import router from './router';
+//import router from './router';
+import CarbonComponentsVue from '@carbon/vue';
 
-createApp(App)
-  .use(CarbonComponentsVue)
-  .use(router)
-  .mount('#app');
+Vue.use(CarbonComponentsVue);
+
+new Vue({
+  // router,
+  render: h => h(App)
+}).$mount('#app');
