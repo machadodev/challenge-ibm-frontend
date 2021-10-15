@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>LOGIN PAGE</h1>
-    <CvButton>Login button</CvButton>
+    <CvButton>ENTRAR</CvButton>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import { CvButton } from '@carbon/vue';
 
 export default {
-  name: 'Login',
+  name: 'LoginPage',
   components: {
     CvButton
   }

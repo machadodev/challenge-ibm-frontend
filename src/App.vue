@@ -1,16 +1,22 @@
 <template>
   <div>
-    <div id="nav">
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/home">Home</router-link>
-    </div>
-    <router-view></router-view>
+    <Header />
+    <CvContent id="#main-content">
+      <router-view />
+    </CvContent>
   </div>
 </template>
 
 <script>
+import { CvContent } from '@carbon/vue';
+import Header from './components/Header';
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    CvContent,
+    Header
+  }
 };
 </script>
 
