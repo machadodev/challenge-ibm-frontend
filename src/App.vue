@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="app-container">
     <Header />
-    <CvContent id="#main-content">
+    <CvContent id="#main-content" class="app-content">
       <router-view />
     </CvContent>
   </div>
@@ -21,5 +21,18 @@ export default {
 </script>
 
 <style lang="scss">
-@import './styles/carbon';
+@import './styles/app';
+
+.app-container {
+  //height: 100%;
+}
+
+.bx--content {
+  height: 100%;
+  padding: 0;
+}
+
+.bx--header ~ .bx--content {
+  margin: 0;
+}
 </style>
