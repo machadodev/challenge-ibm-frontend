@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import App from './App.vue';
-//import router from './router';
+import router from './router';
 import CarbonComponentsVue from '@carbon/vue';
 
 Vue.use(CarbonComponentsVue);
 
 new Vue({
-  // router,
+  router,
   render: h => h(App)
 }).$mount('#app');
