@@ -1,62 +1,14 @@
 <template>
-  <div class="sample">
-    <h1>{{ msg }}</h1>
-    <cv-text-input
-      label="Who are you?"
-      v-model="yourName"
-      placeholder="your name"
-    />
-    <cv-button @click="onClick">Hello {{ yourName }}</cv-button>
-    <cv-modal :visible="visible" @modal-hidden="modalClosed">
-      <template v-slot:title>Welcome to @carbon/vue {{ yourName }}</template>
-      <template v-slot:content>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, seed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
-      </template>
-    </cv-modal>
-  </div>
+  <cv-button @click="onClick">Hello @carbon/vue</cv-button>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  data() {
-    return {
-      yourName: '',
-      visible: false
-    };
-  },
-  props: {
-    msg: {
-      type: String
-    }
-  },
   methods: {
     onClick() {
-      this.visible = true;
-    },
-    modalClosed() {
-      this.visible = false;
+      alert('Hello @carbon/vue');
     }
   }
 };
 </script>
-
-<style>
-.sample {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 600px;
-  margin: 5% auto;
-}
-
-.cv-text-input {
-  margin: 30px 0;
-}
-</style>

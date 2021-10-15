@@ -1,25 +1,38 @@
 <template>
-  <HelloWorld msg="Hello world!" />
+  <div class="app-container">
+    <Header />
+    <CvContent id="#main-content" class="app-content">
+      <router-view />
+    </CvContent>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { CvContent } from '@carbon/vue';
+import Header from './components/Header';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    CvContent,
+    Header
   }
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss">
+@import './styles/app';
+
+.app-container {
+  //height: 100%;
+}
+
+.bx--content {
+  height: 100%;
+  padding: 0;
+}
+
+.bx--header ~ .bx--content {
+  margin: 0;
 }
 </style>
