@@ -7,15 +7,6 @@
 
     <!-- Adiciona o componente vlibras ao projeto -->
     <VLibras></VLibras>
-
-    <!-- Adiciona botão na parte inferior direita de
-         acessibilidade com opções de contraste, tamanho de fonte, etc.
-    -->
-    <AccessibilityToolbar
-      invertColorsText="Inverter cores"
-      highlightLinksText="Focar Links"
-      accessibileFontSizeText="Mudar tamanho da fonte"
-    ></AccessibilityToolbar>
   </div>
 </template>
 
