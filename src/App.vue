@@ -4,18 +4,23 @@
     <CvContent id="#main-content" class="app-content">
       <router-view />
     </CvContent>
+
+    <!-- Adiciona o componente vlibras ao projeto -->
+    <VLibras></VLibras>
   </div>
 </template>
 
 <script>
 import { CvContent } from '@carbon/vue';
 import Header from './components/Header';
+import VLibras from './components/vlibras';
 
 export default {
   name: 'App',
   components: {
+    Header,
     CvContent,
-    Header
+    VLibras
   }
 };
 </script>
