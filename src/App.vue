@@ -23,10 +23,6 @@ export default {
 <style lang="scss">
 @import './styles/app';
 
-.app-container {
-  //height: 100%;
-}
-
 .bx--content {
   height: 100%;
   padding: 0;
