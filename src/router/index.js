@@ -7,6 +7,45 @@ import axios from 'axios';
 
 Vue.use(VueRouter);
 
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: '/',
+      name: 'landing-page',
+      component: LandingPage,
+      meta: {
+        hideForAuth: true
+      }
+    },
+    {
+      path: '/home',
+      name: 'home-page',
+      component: HomePage,
+      meta: {
+        requiresAuth: true
+      }
+    }
+  ]
+});
+
+router.beforeEach((to, from, next) => {
+  if (
+    to.matched.some(record => record.meta.requiresAuth) &&
+    !store.state.user.logged
+  ) {
+    requireAuth(to, from, next);
+  } else if (
+    to.matched.some(record => record.meta.hideForAuth) &&
+    store.state.user.logged
+  ) {
+    next({ path: '/home' });
+  } else {
+    next();
+  }
+});
+
 // https://router.vuejs.org/guide/advanced/navigation-guards.html
 function requireAuth(to, from, next) {
   // Testing authentication state of the user
@@ -36,20 +75,4 @@ function requireAuth(to, from, next) {
   }
 }
 
-export default new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'landing-page',
-      component: LandingPage
-    },
-    {
-      path: '/home',
-      name: 'home-page',
-      beforeEnter: requireAuth,
-      component: HomePage
-    }
-  ]
-});
+export default router;
