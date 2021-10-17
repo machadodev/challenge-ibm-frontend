@@ -37,8 +37,7 @@ export default {
   },
   methods: {
     actionLogout() {
-      // logout called
-      console.log('logout');
+      window.location.href = `${process.env.VUE_APP_API_URL}/auth/logout`;
     }
   },
   computed: {
