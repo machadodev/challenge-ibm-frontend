@@ -37,7 +37,7 @@ function requireAuth(to, from, next) {
 }
 
 export default new VueRouter({
-  mode: 'hash',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
