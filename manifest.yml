@@ -1,7 +1,7 @@
 applications:
   - name: challenge-ibm-frontend
     path: ./dist
-    buildpack: https://github.com/cloudfoundry/nginx-buildpack.git
+    buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
     random-route: false
     memory: 256M
     env:
