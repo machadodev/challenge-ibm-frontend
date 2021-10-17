@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import LandingPage from '@/views/LandingPage';
 import HomePage from '@/views/HomePage';
 import store from '../store';
+import axios from 'axios';
 
 Vue.use(VueRouter);
 
@@ -11,17 +12,18 @@ function requireAuth(to, from, next) {
   // Testing authentication state of the user
   if (!store.state.user.logged) {
     // Not sure if user is logged in yet, testing their login
-    const isLoggedUrl = 'http://localhost:3000/auth/logged';
-    fetch(isLoggedUrl, { credentials: 'include' })
-      .then(res => res.json())
-      .then(isLogged => {
-        if (isLogged.logged) {
+    const isLoggedUrl = `${process.env.VUE_APP_API_URL}/auth/logged`;
+    axios
+      .get(isLoggedUrl, { withCredentials: true })
+      .then(response => {
+        const user = response.data;
+        if (user.logged) {
           // User is already logged in, storing
-          store.commit('setUser', isLogged);
+          store.commit('setUser', user);
           next();
         } else {
           // User is not logged in, redirecting to App ID
-          window.location.href = `http://localhost:3000/auth/login?redirect=${to.fullPath}`;
+          window.location.href = `${process.env.VUE_APP_API_URL}/auth/login?redirect=${to.fullPath}`;
         }
       })
       .catch(e => {
