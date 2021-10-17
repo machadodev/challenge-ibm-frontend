@@ -30,6 +30,27 @@
               </CvForm>
             </div>
           </div>
+          <div class="bx--row">
+            <div class="bx--col-lg-12 divider"></div>
+          </div>
+          <div class="bx--row" v-if="answers.length > 0">
+            <div class="bx--col-lg-12">
+              <CvTabs
+                :container="container"
+                @tab-selected="actionSelected"
+                aria-label="navigation tab label"
+              >
+                <CvTab
+                  v-for="(answer, id) in answers"
+                  :key="id"
+                  :id="`tab-${id}`"
+                  :label="`Resposta ${id + 1}`"
+                >
+                  <div class="answer" v-html="answer"></div>
+                </CvTab>
+              </CvTabs>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -42,6 +63,8 @@ import {
   CvSelect,
   CvSelectOption,
   CvTextArea,
+  CvTabs,
+  CvTab,
   CvButton
 } from '@carbon/vue';
 import { Search16 } from '@carbon/icons-vue';
@@ -54,12 +77,18 @@ export default {
     CvSelect,
     CvSelectOption,
     CvTextArea,
+    CvTabs,
+    CvTab,
     CvButton
   },
   data() {
     return {
+      answers: [],
       textValue: '',
-      pagesizeValue: '1'
+      pagesizeValue: '1',
+      container: false,
+      selected: false,
+      disabled: false
     };
   },
   methods: {
@@ -70,15 +99,16 @@ export default {
           pagesize: this.pagesizeValue
         })
         .then(response => {
-          console.log(response.data);
+          this.answers = response.data;
         })
         .catch(error => {
-          console.log(error);
+          console.error(error);
         });
     },
     onSelectOption(value) {
       this.pagesizeValue = value;
-    }
+    },
+    actionSelected() {}
   },
   computed: {
     Search16() {
@@ -118,7 +148,7 @@ export default {
   margin-right: auto;
   margin-top: 10rem;
   padding: 2rem;
-  max-width: 810px;
+  max-width: 80%;
   background-color: transparent;
   position: relative;
   margin-bottom: 20rem;
@@ -128,5 +158,17 @@ export default {
 .select-count-results {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+.divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 1px;
+  overflow: hidden;
+  background-color: #e0e0e0;
+}
+
+.answer {
+  margin-top: 1rem;
 }
 </style>
