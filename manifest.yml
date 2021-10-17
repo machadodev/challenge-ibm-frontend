@@ -5,4 +5,6 @@ applications:
     random-route: false
     memory: 512M
     env:
-    FORCE_HTTPS: true
+      FORCE_HTTPS: true
+      SASS_PATH: "node_modules"
+      VUE_APP_API_URL: https://challenge-ibm-backend.mybluemix.net
