@@ -4,8 +4,8 @@
 
 //@import 'carbon-components/scss/globals/scss/styles';
 
-// PRODUCTION ENVIRONMENT
-// Feature flags
+//PRODUCTION ENVIRONMENT
+// featureflags
 $css--font-face: true;
 $css--plex: true;
 
@@ -15,5 +15,5 @@ $css--plex: true;
 
 // Carbon components
 @import 'carbon-components/scss/components/button/button';
-@import 'carbon-components/scss/components/tabs/tabs';
 @import 'carbon-components/scss/components/ui-shell/ui-shell';
+@import 'carbon-components/scss/components/tooltip/tooltip';

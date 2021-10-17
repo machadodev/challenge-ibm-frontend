@@ -1,25 +1,45 @@
 <template>
-  <CvHeader aria-label="Carbon tutorial">
+  <CvHeader aria-label="header">
     <CvSkipToContent href="#main-content">Ir para conteúdo</CvSkipToContent>
-    <cv-header-name to="/" prefix="IBM">Challenge</cv-header-name>
+    <CvHeaderName to="/" prefix="IBM">Challenge</CvHeaderName>
     <template v-slot:header-global v-if="user.logged">
-      <cv-header-global-action aria-label="User avatar">
-        <UserAvatar20 />
-      </cv-header-global-action>
+      <CvHeaderGlobalAction
+        aria-label="Logout"
+        aria-controls="user-panel"
+        @click="actionLogout"
+        label="Sair"
+        tipPosition="bottom"
+        tipAlignment="end"
+      >
+        <Logout20 />
+      </CvHeaderGlobalAction>
     </template>
   </CvHeader>
 </template>
 
 <script>
-import { CvHeader, CvSkipToContent } from '@carbon/vue';
-import { UserAvatar20 } from '@carbon/icons-vue';
+import {
+  CvHeader,
+  CvHeaderName,
+  CvHeaderGlobalAction,
+  CvSkipToContent
+} from '@carbon/vue';
+import { Logout20 } from '@carbon/icons-vue';
 
 export default {
   name: 'Header',
   components: {
     CvHeader,
+    CvHeaderName,
+    CvHeaderGlobalAction,
     CvSkipToContent,
-    UserAvatar20
+    Logout20
+  },
+  methods: {
+    actionLogout() {
+      // logout called
+      console.log('logout');
+    }
   },
   computed: {
     user() {
