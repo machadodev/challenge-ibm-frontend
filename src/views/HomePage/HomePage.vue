@@ -107,7 +107,7 @@ export default {
         this.submitting = !this.submitting;
 
         axios
-          .post('http://localhost:3000/search', {
+          .post(`${process.env.VUE_APP_API_URL}/api/search`, {
             text: this.textValue,
             pagesize: this.pagesizeValue
           })
@@ -118,6 +118,7 @@ export default {
           })
           .catch(error => {
             console.error(error);
+            window.alert('Something went wrong');
             this.submitting = false;
           });
       }
