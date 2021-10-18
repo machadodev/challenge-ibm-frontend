@@ -5,7 +5,7 @@
         <div class="bx--grid--full-width">
           <div class="bx--row">
             <div class="bx--col-lg-12">
-              <CvForm @submit.prevent="actionSubmit">
+              <CvForm @submit.prevent="onSubmit">
                 <CvTextArea
                   label="Pesquisar soluções para erros"
                   helper-text="Campo de busca para encontrar possíveis soluções para erros no Stackoverflow"
@@ -88,14 +88,6 @@ export default {
   },
   data() {
     return {
-      title: 'notification title',
-      subTitle: 'a subtitle',
-      caption: 'Time stamp <a href="#">[00:00:00]</a>',
-      closeAriaLabel: 'Custom close aria label',
-      lowContrast: false,
-      hideCloseButton: false,
-      visible: false,
-
       answers: [],
       textValue: '',
       pagesizeValue: '1',
@@ -105,26 +97,30 @@ export default {
       notFoundAnswer: {
         message: 'Nenhuma resposta encontrada',
         flag: false
-      }
+      },
+      submitting: false
     };
   },
   methods: {
-    actionSubmit() {
-      this.visible = true;
-      axios
-        .post('http://localhost:3000/search', {
-          text: this.textValue,
-          pagesize: this.pagesizeValue
-        })
-        .then(response => {
-          this.answers = response.data;
-          this.notFoundAnswer.flag = this.answers.length === 0;
-          console.log(this.answers);
-          console.log(this.notFoundAnswer.flag);
-        })
-        .catch(error => {
-          console.error(error);
-        });
+    onSubmit() {
+      if (!this.submitting) {
+        this.submitting = !this.submitting;
+
+        axios
+          .post('http://localhost:3000/search', {
+            text: this.textValue,
+            pagesize: this.pagesizeValue
+          })
+          .then(response => {
+            this.answers = response.data;
+            this.notFoundAnswer.flag = this.answers.length === 0;
+            this.submitting = false;
+          })
+          .catch(error => {
+            console.error(error);
+            this.submitting = false;
+          });
+      }
     },
     onSelectOption(value) {
       this.pagesizeValue = value;
@@ -136,7 +132,7 @@ export default {
       return Search16;
     },
     canSearch() {
-      return this.textValue.length > 0;
+      return this.textValue.length > 0 && this.submitting === false;
     },
     generateOptions() {
       const options = [];
@@ -170,13 +166,24 @@ export default {
   background-color: rgb(255, 255, 255) !important;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   padding: 2rem;
-  max-width: 80%;
+  max-width: 80vw;
   background-color: transparent;
   position: relative;
-  margin-bottom: 20rem;
+
   overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  .inner {
+    border-radius: 0;
+    margin-top: 3rem;
+    margin-bottom: 0;
+    padding: 1rem;
+    max-width: 100vw;
+  }
 }
 
 .select-count-results {
