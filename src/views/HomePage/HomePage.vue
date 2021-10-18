@@ -26,13 +26,18 @@
                     >{{ option.label }}</CvSelectOption
                   >
                 </CvSelect>
-                <CvButton :icon="Search16">Buscar</CvButton>
+                <CvButton :icon="Search16" :disabled="!canSearch"
+                  >Buscar</CvButton
+                >
               </CvForm>
             </div>
           </div>
           <div class="bx--row">
             <div class="bx--col-lg-12 divider"></div>
           </div>
+          <h4 class="notfound-answer" v-if="notFoundAnswer.flag">
+            {{ notFoundAnswer.message }}
+          </h4>
           <div class="bx--row" v-if="answers.length > 0">
             <div class="bx--col-lg-12">
               <CvTabs
@@ -83,16 +88,29 @@ export default {
   },
   data() {
     return {
+      title: 'notification title',
+      subTitle: 'a subtitle',
+      caption: 'Time stamp <a href="#">[00:00:00]</a>',
+      closeAriaLabel: 'Custom close aria label',
+      lowContrast: false,
+      hideCloseButton: false,
+      visible: false,
+
       answers: [],
       textValue: '',
       pagesizeValue: '1',
       container: false,
       selected: false,
-      disabled: false
+      disabled: false,
+      notFoundAnswer: {
+        message: 'Nenhuma resposta encontrada',
+        flag: false
+      }
     };
   },
   methods: {
     actionSubmit() {
+      this.visible = true;
       axios
         .post('http://localhost:3000/search', {
           text: this.textValue,
@@ -100,6 +118,9 @@ export default {
         })
         .then(response => {
           this.answers = response.data;
+          this.notFoundAnswer.flag = this.answers.length === 0;
+          console.log(this.answers);
+          console.log(this.notFoundAnswer.flag);
         })
         .catch(error => {
           console.error(error);
@@ -113,6 +134,9 @@ export default {
   computed: {
     Search16() {
       return Search16;
+    },
+    canSearch() {
+      return this.textValue.length > 0;
     },
     generateOptions() {
       const options = [];
@@ -170,5 +194,9 @@ export default {
 
 .answer {
   margin-top: 1rem;
+}
+
+.notfound-answer {
+  color: rgb(121, 6, 6);
 }
 </style>
