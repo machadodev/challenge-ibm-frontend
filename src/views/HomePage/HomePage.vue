@@ -106,11 +106,11 @@ export default {
       if (!this.submitting) {
         this.submitting = !this.submitting;
 
-        axios
-          .post(`${process.env.VUE_APP_API_URL}/api/search`, {
-            text: this.textValue,
-            pagesize: this.pagesizeValue
-          })
+        axios(`${process.env.VUE_APP_API_URL}/api/search`, {
+          method: 'POST',
+          data: { text: this.textValue, pagesize: this.pagesizeValue },
+          withCredentials: true
+        })
           .then(response => {
             this.answers = response.data;
             this.notFoundAnswer.flag = this.answers.length === 0;
